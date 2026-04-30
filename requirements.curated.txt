@@ -1,0 +1,56 @@
+# Core ML / HuggingFace stack
+accelerate==0.27.2
+adapters==1.0.1
+datasets==2.18.0
+evaluate==0.4.2
+huggingface-hub==0.25.2
+peft==0.11.1
+safetensors==0.4.3
+tokenizers==0.20.3
+transformers==4.45.2
+
+# PyTorch
+torch==2.3.0
+torchmetrics==1.4.0.post0
+pytorch-lightning==2.2.5
+lightning-utilities==0.11.2
+
+# Scientific stack
+numpy==1.26.4
+pandas==2.0.3
+scikit-learn==1.4.2
+scipy==1.12.0
+regex==2024.4.28
+tqdm==4.67.1
+
+# Experiment tracking
+wandb==0.18.7
+
+# pkg_resources is removed in setuptools>=81; several deps still import it
+setuptools<81
+
+# JAX stack (Linux/macOS only — no Windows wheels for jaxlib).
+# Required by zett and its flax-based components.
+jax==0.4.24; sys_platform != 'win32'
+jaxlib==0.4.24; sys_platform != 'win32'
+flax==0.8.0; sys_platform != 'win32'
+optax==0.1.5; sys_platform != 'win32'
+chex==0.1.86; sys_platform != 'win32'
+orbax-checkpoint==0.5.10; sys_platform != 'win32'
+tensorstore==0.1.58; sys_platform != 'win32'
+
+# Project git dep — zett MUST be installed editable from a local clone, not from
+# git+https, because it loads data files via Path(__file__).parent/'..'/data which
+# only resolves correctly in a source tree. After installing this requirements file:
+#   git clone https://github.com/bminixhofer/zett.git
+#   pip install -e ./zett
+# (Linux/macOS only — the repo has a colon in a filename which Windows rejects.)
+
+# Optional: only needed for decoders/evaluation/mt_bench/gen_model_answer.py
+# Uncomment if running mt_bench. `scann` has no Windows wheels.
+# faiss-cpu
+# scann; sys_platform != 'win32'
+# fschat
+# nltk
+# ray
+# shortuuid
